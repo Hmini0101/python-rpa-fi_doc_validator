@@ -1,0 +1,22 @@
+# 가상환경 폴더
+venv/
+.venv/
+env/
+
+# 환경 변수 파일 (API 키 등 민감 정보)
+.env
+
+# 파이썬 캐시 파일
+__pycache__/
+*.pyc
+
+# 로그 파일
+logs/*.log
+
+# IDE 설정 (VS Code 등)
+.vscode/
+.idea/
+
+# 데이터 관련 (로컬 테스트용 샘플 데이터)
+data/raw/*
+!data/raw/.gitkeep
