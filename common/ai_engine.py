@@ -6,7 +6,7 @@ import PIL.Image
 class GeminiEngine:
     def __init__(self):
         genai.configure(api_key=config.GOOGLE_API_KEY)
-        self.model = genai.GenerativeModel("gemini-1.5-flash")
+        self.model = genai.GenerativeModel("gemini-flash-latest")
 
     def analyze_document(self, image_path: str, prompt: str):
         try:
