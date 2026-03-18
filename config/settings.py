@@ -8,15 +8,17 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     ENV: Literal["local", "dev", "prod"] = Field(default="local")
     OPEN_API_KEY: str = Field(..., alias="OPEN_API_KEY")
+    GOOGLE_API_KEY: str = Field(..., alias="GOOGLE_API_KEY")
     OCR_THRESHOLD: float = Field(default=0.8, ge=0.0, le=1.0)
 
     BASE_DIR: Path = Path(__file__).resolve().parent.parent
-    DB_PATH: Path = Path("./data/finance_data.db")
-
-    DATA_RAW_DIR: DirectoryPath = Field(default=BASE_DIR / "logs")
+    DB_PATH: Path = Field(default=BASE_DIR / "data" / "finance_data.db")
+    DATA_RAW_DIR: Path = Field(default=BASE_DIR / "logs")
 
     model_config = SettingsConfigDict(
-        env_file=".env", env_file_encoding="utf-8", extra="ignore"
+        env_file=Path(__file__).resolve().parent.parent / ".env",  # 절대 경로로 지정
+        env_file_encoding="utf-8",
+        extra="ignore",
     )
 
 
@@ -38,7 +40,7 @@ def init_db():
                         """
         )
         conn.commit()
-        print(f"[시스템] DB 준비완료 : {self.DB_PATH}")
+        print(f"[시스템] DB 준비완료 : {config.DB_PATH}")
 
 
 if __name__ == "__main__":

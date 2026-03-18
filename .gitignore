@@ -5,17 +5,35 @@ env/
 
 # 환경 변수 파일 (API 키 등 민감 정보)
 .env
+.env.*
+
+# 기타 비밀/설정 파일
+*.secret
+*.secrets
+*.key
+*.pem
+
 
 # 파이썬 캐시 파일
 __pycache__/
 *.pyc
 
-# 로그 파일
-logs/*.log
+# 로그 및 실행 시 생성되는 파일
+data/
+logs/
+*.log
+
+# 데이터베이스 및 로컬 데이터 파일 (업로드 금지)
+*.db
+*.sqlite
+*.sqlite3
+data/*.db
+data/*.sqlite*
 
 # IDE 설정 (VS Code 등)
 .vscode/
 .idea/
+.cursor/
 
 # 데이터 관련 (로컬 테스트용 샘플 데이터)
 data/raw/*
